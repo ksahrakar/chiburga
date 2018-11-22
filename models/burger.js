@@ -9,7 +9,7 @@ var burgs = {
         caba(res)})},
     create: function(caba){
         // create a burger
-        orm.create("burgers","name","triple tofu no cheese",function(res){
+        orm.create("burgers","burger_name","devoured","triple tofu no cheese",false,function(res){
         caba(res)})},
     remove: function(caba){
         // eat a burger
@@ -17,7 +17,7 @@ var burgs = {
         caba(res)})},
     consumed: function(caba){
         // select the consumed burgers
-        orm.eaten("burgers",true,function(res){
+        orm.selectWhere("burgers","devoured",true,function(res){
         caba(res)})},
     edit: function(caba){
         // change a burger

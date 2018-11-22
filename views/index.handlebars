@@ -16,7 +16,7 @@ Include a button to submit the burger into the db --}}
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
+<body style="margin-bottom:50px">
 <h1 class="ctr">Chi'Burga</h1>
 <div>
     <img id="pic" src="../assets/img/burger.png" width=150px height=150px>
@@ -26,32 +26,63 @@ Include a button to submit the burger into the db --}}
     <div class="col s6"><h4>Your Creations</h4></div>
     <div class="col s6"><h4>Your Consumption</h4></div>
     <div class="col s6">
-        <ul>
+        <ul id="creations">
             {{#each burger}}
+            {{#unless this.devoured}}
             <li>
-                <h6>
-                    {{this.name}}
-                    <button burgerID="{{this.id}}" class="delBurger">Devour it!</button>
-                </h6>
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <div class="card-panel grey">
+                            <div class="card-content white-text">
+                                <h6>{{this.burger_name}}</h6>
+                                <hr>
+                            </div>
+                            <div class="card-action">
+                                <button style="color:black;background-color:coral" burgerID="{{this.id}}" class="delBurger waves-effect btn-small">Devour it!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
+            {{/unless}}
             {{/each}}
         </ul>
     </div>
-    <div class="col s6">
-        <h6>your consumptions here</h6>
+    <div class="col s6" >
+        <br>
+        <ul class="collection">
+            {{#each burger}}
+            {{#if this.devoured}}
+            <li class="collection-item">
+                <div class="row" style="margin-bottom:0px;">
+                    <div class="col s8 offset-s2">
+                        <div class="card-panel grey">
+                            <div class="card-content black-text">
+                                <span style="font-size: 18px">{{this.burger_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
     </div>
 </div>
 <hr>
 <div class="row ctr">
     <div class="col s12"><h4>Create Another</h4></div>
-    <form id="addBurger" class="button">
-	    <textarea type="text" name="burger" placeholder="Create a new burger here" width=300px></textarea>
-	    <button type="submit">Add Creation</button>
+    <form id="addBurger">
+        <div class="input-field col s4 push-s4">
+          <input name="burger" placeholder="Create a New Burger Here" id="first_name" type="text" class="validate">
+          <button type="submit" style="color:black;background-color:coral" class="waves-effect btn-small">Add Creation</button>
+        </div>
     </form>
 </div>
 <div id="footer">
     <small style="margin-left:10px"><a href="https://github.com/ksahrakar/chiburga.git">GitHub Repo</a></small>
     <small id="sig">&copy;2018 Kamran Sahrakar</small>
 </div>
+<script src="main"></script>
 </body>
 </html>

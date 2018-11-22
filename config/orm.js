@@ -12,7 +12,7 @@ var orm = {
     });
   },
     // SELECT WHERE
-  selectWhere: function(table, col, val,caba) {
+  selectWhere: function(table, col, val, caba) {
     var query = "SELECT * FROM ?? WHERE ?? = ?";
     console.log(query);
     conn.query(query, [table, col, val], function(err, res) {
@@ -21,12 +21,12 @@ var orm = {
     });
   },
     // INSERT ONE
-  create: function(table, col, val, caba) {
-    var query = `INSERT INTO ${table} (${col}) VALUES ("${val.toString()}")`;
+  create: function(table, val1, caba) {
+    var query = `INSERT INTO ${table} ("burger_name","devoured") VALUES ("${val1.toString()}",false)`;
     console.log(query);
-    conn.query(query, val, function(err, res) {
+    conn.query(query, function(err, res) {
       if (err) {throw err}
-      caba(res);
+      res.redirect("/");
     });
   },
     // DELETE
