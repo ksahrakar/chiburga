@@ -10,11 +10,11 @@ var burgs = {
     create: function(val,caba){
         // create a burger
         var name=val.burger_name;
-        orm.create("burgers",name,function(res){
+        orm.create("burgers","burger_name",name,function(res){
         caba(res)})},
     eat: function(id,caba){
         // change a burger
-        orm.eat("burgers",id,function(res){
+        orm.eat("burgers",id,"devoured",true,function(res){
         caba(res)})}
 }
 
